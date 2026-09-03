@@ -1,0 +1,5 @@
+resource_name,enabled
+Patient,true
+Encounter,true
+Observation,true
+Condition,true
