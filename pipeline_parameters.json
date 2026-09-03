@@ -1,0 +1,35 @@
+{
+  "pipeline_name": "pl_fhir_incremental_ingestion",
+  "parameters": [
+    "start_date",
+    "end_date",
+    "page_size",
+    "api_base_url"
+  ],
+  "activities": [
+    {
+      "name": "NB_01_FHIR_Ingestion",
+      "type": "Notebook"
+    },
+    {
+      "name": "NB_02_Raw_To_Bronze",
+      "type": "Notebook",
+      "dependsOn": "NB_01_FHIR_Ingestion"
+    },
+    {
+      "name": "NB_03_Bronze_To_Silver",
+      "type": "Notebook",
+      "dependsOn": "NB_02_Raw_To_Bronze"
+    },
+    {
+      "name": "NB_04_SCD_Type2",
+      "type": "Notebook",
+      "dependsOn": "NB_03_Bronze_To_Silver"
+    },
+    {
+      "name": "NB_05_Gold_Model",
+      "type": "Notebook",
+      "dependsOn": "NB_04_SCD_Type2"
+    }
+  ]
+}
